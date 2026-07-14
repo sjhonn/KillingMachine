@@ -1,0 +1,45 @@
+@model Trainer
+@{ ViewData["Title"] = "Crear registro"; }
+<section class="page-header"><div class="container"><span class="eyebrow">ENTRENADORES</span><h1>Crear registro</h1></div></section>
+<section class="crud-shell"><div class="container narrow">
+    <form asp-action="Create" method="post" class="panel-form">
+        <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+        <div class="form-grid two">
+            <div class="form-group">
+                <label asp-for="FullName"></label>
+                <input asp-for="FullName" type="text" required />
+                <span asp-validation-for="FullName"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Specialty"></label>
+                <input asp-for="Specialty" type="text" required />
+                <span asp-validation-for="Specialty"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" type="email" required />
+                <span asp-validation-for="Email"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone"></label>
+                <input asp-for="Phone" type="tel" required />
+                <span asp-validation-for="Phone"></span>
+            </div>
+            <div class="form-group full">
+                <label asp-for="Biography"></label>
+                <textarea asp-for="Biography" rows="5" required></textarea>
+                <span asp-validation-for="Biography"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Schedule"></label>
+                <input asp-for="Schedule" type="text" required />
+                <span asp-validation-for="Schedule"></span>
+            </div>
+            <div class="form-group full">
+                <div class="form-check"><input asp-for="IsActive" /><label asp-for="IsActive"></label></div>
+                <span asp-validation-for="IsActive"></span>
+            </div>
+        </div>
+        <div class="actions" style="margin-top:22px"><button class="btn btn-primary" type="submit">Guardar</button><a class="btn btn-secondary" asp-action="Index">Cancelar</a></div>
+    </form>
+</div></section>

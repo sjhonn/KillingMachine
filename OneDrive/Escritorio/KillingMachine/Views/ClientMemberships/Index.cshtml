@@ -1,0 +1,6 @@
+@model IEnumerable<ClientMembership>
+@{ ViewData["Title"] = "Membresias"; }
+<section class="page-header"><div class="container"><span class="eyebrow">CRUD PUBLICO</span><h1>Membresias de clientes</h1><p>Asignacion de planes, vigencia y pagos.</p></div></section><section class="crud-shell"><div class="container"><div class="crud-toolbar"><h2>Membresias</h2><a class="btn btn-primary" asp-action="Create">Nueva membresia</a></div>
+@if (!Model.Any()) { <div class="empty-state">No existen membresias.</div> } else { <div class="table-wrap"><table class="data-table"><thead><tr><th>Cliente</th><th>Plan</th><th>Inicio</th><th>Fin</th><th>Estado</th><th>Monto</th><th>Acciones</th></tr></thead><tbody>
+@foreach (var item in Model) { <tr><td>@item.Client?.FullName</td><td>@item.MembershipPlan?.Name</td><td>@item.StartDate.ToString("dd/MM/yyyy")</td><td>@item.EndDate.ToString("dd/MM/yyyy")</td><td>@item.Status</td><td>S/ @item.AmountPaid.ToString("0.00")</td><td><div class="actions"><a class="btn btn-small btn-secondary" asp-action="Details" asp-route-id="@item.Id">Ver</a><a class="btn btn-small btn-primary" asp-action="Edit" asp-route-id="@item.Id">Editar</a><a class="btn btn-small btn-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a></div></td></tr> }
+</tbody></table></div> }</div></section>

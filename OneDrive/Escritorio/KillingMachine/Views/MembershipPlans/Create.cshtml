@@ -1,0 +1,40 @@
+@model MembershipPlan
+@{ ViewData["Title"] = "Crear registro"; }
+<section class="page-header"><div class="container"><span class="eyebrow">PLANES COMERCIALES</span><h1>Crear registro</h1></div></section>
+<section class="crud-shell"><div class="container narrow">
+    <form asp-action="Create" method="post" class="panel-form">
+        <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+        <div class="form-grid two">
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" type="text" required />
+                <span asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group full">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" rows="5" required></textarea>
+                <span asp-validation-for="Description"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MonthlyPrice"></label>
+                <input asp-for="MonthlyPrice" type="number" step="0.01" required />
+                <span asp-validation-for="MonthlyPrice"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DurationMonths"></label>
+                <input asp-for="DurationMonths" type="number" step="1" required />
+                <span asp-validation-for="DurationMonths"></span>
+            </div>
+            <div class="form-group full">
+                <label asp-for="Benefits"></label>
+                <textarea asp-for="Benefits" rows="5" required></textarea>
+                <span asp-validation-for="Benefits"></span>
+            </div>
+            <div class="form-group full">
+                <div class="form-check"><input asp-for="IsActive" /><label asp-for="IsActive"></label></div>
+                <span asp-validation-for="IsActive"></span>
+            </div>
+        </div>
+        <div class="actions" style="margin-top:22px"><button class="btn btn-primary" type="submit">Guardar</button><a class="btn btn-secondary" asp-action="Index">Cancelar</a></div>
+    </form>
+</div></section>

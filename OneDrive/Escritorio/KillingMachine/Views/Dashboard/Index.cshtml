@@ -1,0 +1,64 @@
+@model DashboardViewModel
+@using System.Text.Json
+@{
+    ViewData["Title"] = "Dashboard de progreso";
+}
+<section class="page-header">
+    <div class="container">
+        <span class="eyebrow">PROGRESO</span>
+        <h1>Dashboard publico</h1>
+        <p>Indicadores, peso, IMC y entrenamientos de los clientes registrados.</p>
+    </div>
+</section>
+<section class="section compact">
+    <div class="container">
+        <div class="kpi-grid">
+            <div class="kpi"><span>Clientes</span><strong>@Model.ClientCount</strong></div>
+            <div class="kpi"><span>Membresias activas</span><strong>@Model.ActiveMembershipCount</strong></div>
+            <div class="kpi"><span>Entrenadores</span><strong>@Model.TrainerCount</strong></div>
+            <div class="kpi"><span>Entrenamientos</span><strong>@Model.WorkoutCount</strong></div>
+            <div class="kpi"><span>Pruebas pendientes</span><strong>@Model.PendingTrialCount</strong></div>
+        </div>
+
+        <form method="get" class="filter-bar">
+            <label for="clientId">Cliente</label>
+            <select id="clientId" name="clientId" asp-items="Model.Clients"></select>
+            <button type="submit" class="btn btn-primary">Ver progreso</button>
+        </form>
+
+        @if (Model.SelectedClientId is null)
+        {
+            <div class="empty-state">Registre un cliente para mostrar su progreso.</div>
+        }
+        else
+        {
+            <div class="progress-summary">
+                <div><span>Cliente</span><strong>@Model.SelectedClientName</strong></div>
+                <div><span>IMC actual</span><strong>@Model.LatestBmi.ToString("0.00")</strong></div>
+                <div><span>Entrenamientos ultimos 7 dias</span><strong>@Model.CompletedThisWeek</strong></div>
+            </div>
+            <div class="chart-grid">
+                <article class="chart-card">
+                    <h2>Evolucion del peso</h2>
+                    <canvas id="weightChart" height="260"></canvas>
+                </article>
+                <article class="chart-card">
+                    <h2>Minutos de entrenamiento</h2>
+                    <canvas id="workoutChart" height="260"></canvas>
+                </article>
+            </div>
+        }
+    </div>
+</section>
+@section Scripts {
+<script>
+    window.kmCharts = {
+        weightLabels: @Html.Raw(JsonSerializer.Serialize(Model.WeightLabels)),
+        weightValues: @Html.Raw(JsonSerializer.Serialize(Model.WeightValues)),
+        workoutLabels: @Html.Raw(JsonSerializer.Serialize(Model.WorkoutLabels)),
+        workoutValues: @Html.Raw(JsonSerializer.Serialize(Model.WorkoutMinutes))
+    };
+    drawLineChart('weightChart', window.kmCharts.weightLabels, window.kmCharts.weightValues, 'kg');
+    drawBarChart('workoutChart', window.kmCharts.workoutLabels, window.kmCharts.workoutValues, 'min');
+</script>
+}

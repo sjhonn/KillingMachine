@@ -1,0 +1,37 @@
+@model IEnumerable<Exercise>
+@{ ViewData["Title"] = "Ejercicios"; }
+<section class="page-header"><div class="container"><span class="eyebrow">CRUD PUBLICO</span><h1>Ejercicios</h1><p>Crear, consultar, editar y eliminar registros.</p></div></section>
+<section class="crud-shell">
+    <div class="container">
+        <div class="crud-toolbar"><h2>Registros</h2><a class="btn btn-primary" asp-action="Create">Nuevo registro</a></div>
+        @if (!Model.Any())
+        {
+            <div class="empty-state">No existen registros.</div>
+        }
+        else
+        {
+            <div class="table-wrap"><table class="data-table"><thead><tr>
+                    <th>@Html.DisplayNameFor(model => model.Name)</th>
+                    <th>@Html.DisplayNameFor(model => model.MuscleGroup)</th>
+                    <th>@Html.DisplayNameFor(model => model.Description)</th>
+                    <th>@Html.DisplayNameFor(model => model.Equipment)</th>
+                    <th>@Html.DisplayNameFor(model => model.Difficulty)</th>
+                    <th>@Html.DisplayNameFor(model => model.CaloriesPerHour)</th>
+                    <th>Acciones</th>
+                </tr></thead><tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.MuscleGroup</td>
+                    <td>@item.Description</td>
+                    <td>@item.Equipment</td>
+                    <td>@item.Difficulty</td>
+                    <td>@item.CaloriesPerHour</td>
+                    <td><div class="actions"><a class="btn btn-small btn-secondary" asp-action="Details" asp-route-id="@item.Id">Ver</a><a class="btn btn-small btn-primary" asp-action="Edit" asp-route-id="@item.Id">Editar</a><a class="btn btn-small btn-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a></div></td>
+                </tr>
+            }
+            </tbody></table></div>
+        }
+    </div>
+</section>

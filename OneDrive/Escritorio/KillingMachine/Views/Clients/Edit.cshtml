@@ -1,0 +1,56 @@
+@model Client
+@{ ViewData["Title"] = "Editar registro"; }
+<section class="page-header"><div class="container"><span class="eyebrow">CLIENTES</span><h1>Editar registro</h1></div></section>
+<section class="crud-shell"><div class="container narrow">
+    <form asp-action="Edit" method="post" class="panel-form">
+        <input type="hidden" asp-for="Id" />
+        <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+        <div class="form-grid two">
+            <div class="form-group">
+                <label asp-for="FullName"></label>
+                <input asp-for="FullName" type="text" required />
+                <span asp-validation-for="FullName"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DocumentNumber"></label>
+                <input asp-for="DocumentNumber" type="text" required />
+                <span asp-validation-for="DocumentNumber"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" type="email" required />
+                <span asp-validation-for="Email"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone"></label>
+                <input asp-for="Phone" type="tel" required />
+                <span asp-validation-for="Phone"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BirthDate"></label>
+                <input asp-for="BirthDate" type="date" asp-format="{0:yyyy-MM-dd}" required />
+                <span asp-validation-for="BirthDate"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HeightCm"></label>
+                <input asp-for="HeightCm" type="number" step="0.1" required />
+                <span asp-validation-for="HeightCm"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JoinDate"></label>
+                <input asp-for="JoinDate" type="date" asp-format="{0:yyyy-MM-dd}" required />
+                <span asp-validation-for="JoinDate"></span>
+            </div>
+            <div class="form-group full">
+                <div class="form-check"><input asp-for="IsActive" /><label asp-for="IsActive"></label></div>
+                <span asp-validation-for="IsActive"></span>
+            </div>
+            <div class="form-group full">
+                <label asp-for="Notes"></label>
+                <textarea asp-for="Notes" rows="5"></textarea>
+                <span asp-validation-for="Notes"></span>
+            </div>
+        </div>
+        <div class="actions" style="margin-top:22px"><button class="btn btn-primary" type="submit">Guardar cambios</button><a class="btn btn-secondary" asp-action="Index">Cancelar</a></div>
+    </form>
+</div></section>

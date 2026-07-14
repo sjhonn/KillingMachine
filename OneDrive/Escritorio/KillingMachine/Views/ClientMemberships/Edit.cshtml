@@ -1,0 +1,9 @@
+@model ClientMembership
+@{ ViewData["Title"] = "Editar membresia"; }<section class="page-header"><div class="container"><h1>Editar membresia</h1></div></section><section class="crud-shell"><div class="container narrow"><form asp-action="Edit" method="post" class="panel-form"><input type="hidden" asp-for="Id" /><div asp-validation-summary="ModelOnly" class="validation-summary"></div><div class="form-grid two">
+<div class="form-group"><label asp-for="ClientId"></label><select asp-for="ClientId" asp-items="ViewBag.ClientId" required><option value="">Seleccione</option></select><span asp-validation-for="ClientId"></span></div>
+<div class="form-group"><label asp-for="MembershipPlanId"></label><select asp-for="MembershipPlanId" asp-items="ViewBag.MembershipPlanId" required><option value="">Seleccione</option></select><span asp-validation-for="MembershipPlanId"></span></div>
+<div class="form-group"><label asp-for="StartDate"></label><input asp-for="StartDate" type="date" required /><span asp-validation-for="StartDate"></span></div>
+<div class="form-group"><label asp-for="EndDate"></label><input asp-for="EndDate" type="date" required /><span asp-validation-for="EndDate"></span></div>
+<div class="form-group"><label asp-for="Status"></label><select asp-for="Status" required><option>Activa</option><option>Vencida</option><option>Suspendida</option><option>Cancelada</option></select><span asp-validation-for="Status"></span></div>
+<div class="form-group"><label asp-for="AmountPaid"></label><input asp-for="AmountPaid" type="number" step="0.01" min="0" required /><span asp-validation-for="AmountPaid"></span></div>
+</div><div class="actions" style="margin-top:22px"><button class="btn btn-primary" type="submit">Guardar cambios</button><a class="btn btn-secondary" asp-action="Index">Cancelar</a></div></form></div></section>

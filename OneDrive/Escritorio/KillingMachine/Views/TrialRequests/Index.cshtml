@@ -1,0 +1,41 @@
+@model IEnumerable<TrialRequest>
+@{ ViewData["Title"] = "Solicitudes de clase"; }
+<section class="page-header"><div class="container"><span class="eyebrow">CRUD PUBLICO</span><h1>Solicitudes de clase</h1><p>Crear, consultar, editar y eliminar registros.</p></div></section>
+<section class="crud-shell">
+    <div class="container">
+        <div class="crud-toolbar"><h2>Registros</h2><a class="btn btn-primary" asp-action="Create">Nuevo registro</a></div>
+        @if (!Model.Any())
+        {
+            <div class="empty-state">No existen registros.</div>
+        }
+        else
+        {
+            <div class="table-wrap"><table class="data-table"><thead><tr>
+                    <th>@Html.DisplayNameFor(model => model.FullName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Email)</th>
+                    <th>@Html.DisplayNameFor(model => model.Phone)</th>
+                    <th>@Html.DisplayNameFor(model => model.PreferredDate)</th>
+                    <th>@Html.DisplayNameFor(model => model.PreferredTime)</th>
+                    <th>@Html.DisplayNameFor(model => model.Objective)</th>
+                    <th>@Html.DisplayNameFor(model => model.Status)</th>
+                    <th>@Html.DisplayNameFor(model => model.CreatedAt)</th>
+                    <th>Acciones</th>
+                </tr></thead><tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FullName</td>
+                    <td>@item.Email</td>
+                    <td>@item.Phone</td>
+                    <td>@item.PreferredDate.ToString("dd/MM/yyyy")</td>
+                    <td>@item.PreferredTime</td>
+                    <td>@item.Objective</td>
+                    <td>@item.Status</td>
+                    <td>@item.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td><div class="actions"><a class="btn btn-small btn-secondary" asp-action="Details" asp-route-id="@item.Id">Ver</a><a class="btn btn-small btn-primary" asp-action="Edit" asp-route-id="@item.Id">Editar</a><a class="btn btn-small btn-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a></div></td>
+                </tr>
+            }
+            </tbody></table></div>
+        }
+    </div>
+</section>

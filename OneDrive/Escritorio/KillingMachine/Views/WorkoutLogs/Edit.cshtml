@@ -1,0 +1,15 @@
+@model WorkoutLog
+@{ ViewData["Title"] = "Editar entrenamiento"; }
+<section class="page-header"><div class="container"><span class="eyebrow">ENTRENAMIENTOS</span><h1>Editar entrenamiento</h1></div></section>
+<section class="crud-shell"><div class="container narrow"><form asp-action="Edit" method="post" class="panel-form"><input type="hidden" asp-for="Id" /><div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+        <div class="form-grid two">
+            <div class="form-group"><label asp-for="ClientId"></label><select asp-for="ClientId" asp-items="ViewBag.ClientId" required><option value="">Seleccione</option></select><span asp-validation-for="ClientId"></span></div>
+            <div class="form-group"><label asp-for="ExerciseId"></label><select asp-for="ExerciseId" asp-items="ViewBag.ExerciseId" required><option value="">Seleccione</option></select><span asp-validation-for="ExerciseId"></span></div>
+            <div class="form-group"><label asp-for="WorkoutDate"></label><input asp-for="WorkoutDate" type="date" required /><span asp-validation-for="WorkoutDate"></span></div>
+            <div class="form-group"><label asp-for="Sets"></label><input asp-for="Sets" type="number" min="1" required /><span asp-validation-for="Sets"></span></div>
+            <div class="form-group"><label asp-for="Repetitions"></label><input asp-for="Repetitions" type="number" min="1" required /><span asp-validation-for="Repetitions"></span></div>
+            <div class="form-group"><label asp-for="WeightKg"></label><input asp-for="WeightKg" type="number" step="0.1" min="0" required /><span asp-validation-for="WeightKg"></span></div>
+            <div class="form-group"><label asp-for="DurationMinutes"></label><input asp-for="DurationMinutes" type="number" min="1" required /><span asp-validation-for="DurationMinutes"></span></div>
+            <div class="form-group full"><label asp-for="Notes"></label><textarea asp-for="Notes" rows="4"></textarea><span asp-validation-for="Notes"></span></div>
+        </div>
+<div class="actions" style="margin-top:22px"><button class="btn btn-primary" type="submit">Guardar cambios</button><a class="btn btn-secondary" asp-action="Index">Cancelar</a></div></form></div></section>

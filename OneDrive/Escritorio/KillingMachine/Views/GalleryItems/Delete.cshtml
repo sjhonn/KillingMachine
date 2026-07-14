@@ -1,0 +1,18 @@
+@model GalleryItem
+@{ ViewData["Title"] = "Eliminar registro"; }
+<section class="page-header"><div class="container"><span class="eyebrow">GALERIA</span><h1>Eliminar registro</h1></div></section>
+<section class="crud-shell"><div class="container narrow">
+    <div class="confirm-box"><strong>Confirme la eliminacion.</strong><p>Esta accion no se puede deshacer.</p></div>
+    <dl class="details-grid">
+        <div><dt>@Html.DisplayNameFor(model => model.Title)</dt><dd>@Model.Title</dd></div>
+        <div><dt>@Html.DisplayNameFor(model => model.ImageUrl)</dt><dd>@Model.ImageUrl</dd></div>
+        <div><dt>@Html.DisplayNameFor(model => model.Description)</dt><dd>@Model.Description</dd></div>
+        <div><dt>@Html.DisplayNameFor(model => model.DisplayOrder)</dt><dd>@Model.DisplayOrder</dd></div>
+        <div><dt>@Html.DisplayNameFor(model => model.IsActive)</dt><dd>@(Model.IsActive ? "Si" : "No")</dd></div>
+    </dl>
+    <form asp-action="Delete" method="post" class="actions" style="margin-top:22px">
+        <input type="hidden" asp-for="Id" />
+        <button class="btn btn-danger" type="submit">Eliminar definitivamente</button>
+        <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+    </form>
+</div></section>
