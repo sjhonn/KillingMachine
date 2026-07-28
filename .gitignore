@@ -1,0 +1,23 @@
+# Compilacion
+bin/
+obj/
+publish/
+.vs/
+
+# Configuracion local
+appsettings.Development.json
+*.user
+*.suo
+
+# SQLite local
+*.db
+*.db-shm
+*.db-wal
+
+# Paquete de publicacion
+KillingMachine-Publish.zip
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+desktop.ini

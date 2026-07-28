@@ -1,0 +1,281 @@
+@model HomeViewModel
+@{
+    ViewData["Title"] = "Gimnasio";
+}
+
+<section class="hero" id="inicio">
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <span class="eyebrow">ENTRENA CON PROPÓSITO</span>
+            <h1>CONSTRUYE TU MEJOR VERSIÓN.</h1>
+            <p>Un espacio para mejorar tu fuerza, cuidar tu salud y avanzar con acompañamiento, sin importar tu nivel de experiencia.</p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="#planes">Conocer membresías</a>
+                <a class="btn btn-outline" href="#clase-prueba">Solicitar clase de prueba</a>
+            </div>
+            <div class="hero-stats" aria-label="Beneficios principales">
+                <div><strong>Todos</strong><span>Los niveles</span></div>
+                <div><strong>Amplios</strong><span>Horarios</span></div>
+                <div><strong>Constante</strong><span>Seguimiento</span></div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <img src="~/images/killing-machine-logo.png" alt="Entrenamiento en Killing Machine" />
+        </div>
+    </div>
+</section>
+
+<section class="section" id="servicios">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">SERVICIOS</span>
+            <h2>Entrenamiento adaptado a cada objetivo</h2>
+            <p>Opciones para comenzar, mejorar tu condición física o llevar tu rendimiento a un nivel superior.</p>
+        </div>
+        <div class="card-grid three">
+            @foreach (var item in Model.Services)
+            {
+                <article class="card service-card">
+                    <span class="card-number">@item.DurationMinutes MINUTOS</span>
+                    <h3>@item.Name</h3>
+                    <p>@item.Description</p>
+                    <div class="card-footer-line">
+                        <strong>S/ @item.Price.ToString("0.00")</strong>
+                        <a href="#clase-prueba" aria-label="Consultar por @item.Name">Consultar</a>
+                    </div>
+                </article>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="section section-soft" id="como-empezar">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">PRIMEROS PASOS</span>
+            <h2>Comenzar es sencillo</h2>
+            <p>Te orientamos desde el primer contacto para que entrenes con seguridad y claridad.</p>
+        </div>
+        <div class="step-grid">
+            <article class="step-card"><span>01</span><h3>Cuéntanos tu objetivo</h3><p>Define qué quieres mejorar: fuerza, resistencia, salud o composición corporal.</p></article>
+            <article class="step-card"><span>02</span><h3>Recibe una orientación</h3><p>Revisamos tu nivel actual y te recomendamos una alternativa adecuada.</p></article>
+            <article class="step-card"><span>03</span><h3>Empieza a progresar</h3><p>Entrena con constancia y consulta tu evolución para mantener el rumbo.</p></article>
+        </div>
+    </div>
+</section>
+
+<section class="section section-dark" id="planes">
+    <div class="container">
+        <div class="section-heading light">
+            <span class="eyebrow">MEMBRESÍAS</span>
+            <h2>Planes para diferentes objetivos</h2>
+            <p>Elige la alternativa que mejor se adapte a tu ritmo, disponibilidad y nivel de acompañamiento.</p>
+        </div>
+        <div class="card-grid three">
+            @foreach (var plan in Model.Plans)
+            {
+                <article class="price-card">
+                    <span class="plan-label">PLAN MENSUAL</span>
+                    <h3>@plan.Name</h3>
+                    <div class="price">S/ @plan.MonthlyPrice.ToString("0.00")<small>/mes</small></div>
+                    <p>@plan.Description</p>
+                    <div class="benefits">@plan.Benefits</div>
+                    <a class="btn btn-light" href="#clase-prueba">Quiero empezar</a>
+                </article>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="section" id="horarios">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">HORARIOS</span>
+            <h2>Encuentra un momento para entrenar</h2>
+            <p>Contamos con alternativas durante la mañana, tarde y noche.</p>
+        </div>
+        <div class="schedule-grid">
+            <article class="schedule-card"><span>LUNES A VIERNES</span><strong>06:00 – 22:00</strong><p>Sala de musculación y atención general.</p></article>
+            <article class="schedule-card"><span>SÁBADOS</span><strong>07:00 – 18:00</strong><p>Entrenamiento libre y sesiones programadas.</p></article>
+            <article class="schedule-card"><span>CLASES GRUPALES</span><strong>Turnos diarios</strong><p>Consulta disponibilidad al solicitar tu clase de prueba.</p></article>
+        </div>
+    </div>
+</section>
+
+<section class="section section-soft" id="orientacion">
+    <div class="container split-grid advisor-grid">
+        <div>
+            <span class="eyebrow">ORIENTACIÓN RÁPIDA</span>
+            <h2>Descubre por dónde comenzar</h2>
+            <p>Selecciona tu objetivo y los días que puedes entrenar para recibir una recomendación inicial.</p>
+            <ul class="feature-list">
+                <li>Recomendación inmediata según tu disponibilidad.</li>
+                <li>Alternativas para principiantes y personas con experiencia.</li>
+                <li>Posibilidad de solicitar una clase antes de elegir una membresía.</li>
+            </ul>
+        </div>
+        <form class="panel-form" id="goalAdvisorForm">
+            <div class="form-grid two">
+                <div class="form-group">
+                    <label for="trainingGoal">Objetivo principal</label>
+                    <select id="trainingGoal" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="salud">Mejorar mi salud</option>
+                        <option value="fuerza">Ganar fuerza</option>
+                        <option value="peso">Controlar mi peso</option>
+                        <option value="rendimiento">Mejorar mi rendimiento</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="availableDays">Días disponibles por semana</label>
+                    <select id="availableDays" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="2">2 días</option>
+                        <option value="3">3 días</option>
+                        <option value="4">4 días</option>
+                        <option value="5">5 o más días</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Ver recomendación</button>
+            <div class="advisor-result" id="goalAdvisorResult" aria-live="polite">Completa ambos campos para recibir una orientación.</div>
+        </form>
+    </div>
+</section>
+
+<section class="section" id="entrenadores">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">NUESTRO EQUIPO</span>
+            <h2>Entrenadores que acompañan tu proceso</h2>
+            <p>Profesionales enfocados en técnica, seguridad y progreso sostenible.</p>
+        </div>
+        <div class="card-grid two">
+            @foreach (var trainer in Model.Trainers)
+            {
+                <article class="trainer-card">
+                    <div class="trainer-mark">KM</div>
+                    <div>
+                        <h3>@trainer.FullName</h3>
+                        <strong>@trainer.Specialty</strong>
+                        <p>@trainer.Biography</p>
+                        <small>@trainer.Schedule</small>
+                    </div>
+                </article>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="section section-dark">
+    <div class="container progress-cta">
+        <div>
+            <span class="eyebrow">SEGUIMIENTO</span>
+            <h2>Observa tus avances y mantén la constancia</h2>
+            <p>Consulta entrenamientos, cambios de peso, medidas y evolución semanal desde un mismo lugar.</p>
+        </div>
+        <div class="hero-actions">
+            <a class="btn btn-light" asp-controller="Dashboard" asp-action="Index">Ver progreso</a>
+            <a class="btn btn-outline-light" asp-controller="Tools" asp-action="Imc">Herramientas de bienestar</a>
+        </div>
+    </div>
+</section>
+
+<section class="section section-soft" id="galeria">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">EXPERIENCIA</span>
+            <h2>Disciplina, constancia y comunidad</h2>
+            <p>Un entorno pensado para entrenar con enfoque y avanzar a tu propio ritmo.</p>
+        </div>
+        <div class="gallery-grid">
+            @foreach (var item in Model.Gallery)
+            {
+                <figure class="gallery-card">
+                    <img src="@item.ImageUrl" alt="@item.Title" loading="lazy" />
+                    <figcaption><strong>@item.Title</strong><span>@item.Description</span></figcaption>
+                </figure>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="section" id="testimonios">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">EXPERIENCIAS</span>
+            <h2>Personas que decidieron avanzar</h2>
+        </div>
+        <div class="testimonial-grid">
+            <blockquote><p>“Encontré una rutina que puedo mantener y ahora entreno con mayor seguridad.”</p><footer>María — Plan Machine</footer></blockquote>
+            <blockquote><p>“El seguimiento me ayudó a ser constante y entender mejor mi progreso.”</p><footer>Diego — Entrenamiento de fuerza</footer></blockquote>
+            <blockquote><p>“Los horarios amplios hicieron posible que volviera a entrenar sin descuidar mis actividades.”</p><footer>Valeria — Sala de musculación</footer></blockquote>
+        </div>
+    </div>
+</section>
+
+<section class="section section-soft" id="clase-prueba">
+    <div class="container split-grid">
+        <div>
+            <span class="eyebrow">CLASE DE PRUEBA</span>
+            <h2>Conoce Killing Machine antes de inscribirte</h2>
+            <p>Déjanos tus datos y nos pondremos en contacto para coordinar una visita y orientarte según tu objetivo.</p>
+            <ul class="feature-list">
+                <li>Orientación inicial.</li>
+                <li>Recorrido por las instalaciones.</li>
+                <li>Recomendación de servicio o membresía.</li>
+            </ul>
+        </div>
+        <form asp-controller="Home" asp-action="Trial" method="post" class="panel-form">
+            <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+            <div class="form-grid two">
+                <div class="form-group"><label asp-for="Trial.FullName"></label><input asp-for="Trial.FullName" required /><span asp-validation-for="Trial.FullName"></span></div>
+                <div class="form-group"><label asp-for="Trial.Email"></label><input asp-for="Trial.Email" type="email" required /><span asp-validation-for="Trial.Email"></span></div>
+                <div class="form-group"><label asp-for="Trial.Phone"></label><input asp-for="Trial.Phone" type="tel" required /><span asp-validation-for="Trial.Phone"></span></div>
+                <div class="form-group"><label asp-for="Trial.PreferredDate"></label><input asp-for="Trial.PreferredDate" type="date" required /><span asp-validation-for="Trial.PreferredDate"></span></div>
+                <div class="form-group"><label asp-for="Trial.PreferredTime"></label><input asp-for="Trial.PreferredTime" type="time" required /><span asp-validation-for="Trial.PreferredTime"></span></div>
+                <div class="form-group full"><label asp-for="Trial.Objective"></label><textarea asp-for="Trial.Objective" rows="4" required placeholder="Cuéntanos qué te gustaría mejorar"></textarea><span asp-validation-for="Trial.Objective"></span></div>
+            </div>
+            <button class="btn btn-primary" type="submit">Solicitar clase de prueba</button>
+        </form>
+    </div>
+</section>
+
+<section class="section" id="preguntas">
+    <div class="container narrow-wide">
+        <div class="section-heading">
+            <span class="eyebrow">PREGUNTAS FRECUENTES</span>
+            <h2>Información antes de comenzar</h2>
+        </div>
+        <div class="faq-list">
+            <details><summary>¿Necesito experiencia previa?</summary><p>No. Puedes comenzar desde un nivel inicial y recibir orientación para entrenar de forma segura.</p></details>
+            <details><summary>¿Puedo solicitar una clase de prueba?</summary><p>Sí. Completa el formulario y coordinaremos una fecha según la disponibilidad.</p></details>
+            <details><summary>¿Qué debo llevar para entrenar?</summary><p>Ropa deportiva cómoda, zapatillas, una botella de agua y una toalla personal.</p></details>
+            <details><summary>¿Puedo cambiar de membresía?</summary><p>Sí. Puedes consultar las alternativas disponibles y elegir la que mejor se adapte a tus objetivos.</p></details>
+            <details><summary>¿Realizan seguimiento del progreso?</summary><p>Sí. Se pueden registrar entrenamientos, peso y medidas para revisar la evolución de cada persona.</p></details>
+        </div>
+    </div>
+</section>
+
+<section class="section section-dark" id="contacto">
+    <div class="container split-grid">
+        <div>
+            <span class="eyebrow">CONTACTO</span>
+            <h2>Estamos listos para orientarte</h2>
+            <p>Av. Principal 123, Lima, Perú</p>
+            <p>Lunes a viernes: 06:00 a 22:00<br />Sábados: 07:00 a 18:00</p>
+            <p>+51 914 491 874<br />bypitx@gmail.com</p>
+        </div>
+        <form asp-controller="Home" asp-action="Contact" method="post" class="panel-form light-form">
+            <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+            <div class="form-grid two">
+                <div class="form-group"><label asp-for="Contact.FullName"></label><input asp-for="Contact.FullName" required /><span asp-validation-for="Contact.FullName"></span></div>
+                <div class="form-group"><label asp-for="Contact.Email"></label><input asp-for="Contact.Email" type="email" required /><span asp-validation-for="Contact.Email"></span></div>
+                <div class="form-group"><label asp-for="Contact.Phone"></label><input asp-for="Contact.Phone" type="tel" /><span asp-validation-for="Contact.Phone"></span></div>
+                <div class="form-group"><label asp-for="Contact.Subject"></label><input asp-for="Contact.Subject" required /><span asp-validation-for="Contact.Subject"></span></div>
+                <div class="form-group full"><label asp-for="Contact.Message"></label><textarea asp-for="Contact.Message" rows="5" required minlength="10"></textarea><span asp-validation-for="Contact.Message"></span></div>
+            </div>
+            <button class="btn btn-light" type="submit">Enviar mensaje</button>
+        </form>
+    </div>
+</section>

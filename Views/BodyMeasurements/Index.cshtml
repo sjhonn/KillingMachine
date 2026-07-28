@@ -1,0 +1,7 @@
+@model IEnumerable<BodyMeasurement>
+@{ ViewData["Title"] = "Peso y medidas"; }
+<section class="page-header"><div class="container"><span class="eyebrow">PROGRESO CORPORAL</span><h1>Peso y medidas</h1><p>Consulta la evolución corporal y el índice de masa corporal.</p></div></section>
+<section class="crud-shell"><div class="container"><div class="crud-toolbar"><h2>Mediciones</h2><a class="btn btn-primary" asp-action="Create">Nueva medicion</a></div>
+@if (!Model.Any()) { <div class="empty-state">No existen mediciones.</div> } else { <div class="table-wrap"><table class="data-table"><thead><tr><th>Cliente</th><th>Fecha</th><th>Peso</th><th>IMC</th><th>Cintura</th><th>Pecho</th><th>Grasa</th><th>Acciones</th></tr></thead><tbody>
+@foreach (var item in Model) { <tr><td>@item.Client?.FullName</td><td>@item.MeasurementDate.ToString("dd/MM/yyyy")</td><td>@item.WeightKg.ToString("0.0") kg</td><td>@item.CalculateBmi(item.Client?.HeightCm ?? 0).ToString("0.00")</td><td>@item.WaistCm.ToString("0.0") cm</td><td>@item.ChestCm.ToString("0.0") cm</td><td>@item.BodyFatPercentage.ToString("0.0")%</td><td><div class="actions"><a class="btn btn-small btn-secondary" asp-action="Details" asp-route-id="@item.Id">Ver</a><a class="btn btn-small btn-primary" asp-action="Edit" asp-route-id="@item.Id">Editar</a><a class="btn btn-small btn-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a></div></td></tr> }
+</tbody></table></div> }</div></section>

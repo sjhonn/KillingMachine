@@ -1,69 +1,30 @@
 # Killing Machine
-
-Aplicación web para gimnasio desarrollada con ASP.NET Core MVC, Entity Framework Core y SQLite.
+Sitio web del gimnasio Killing Machine.
 
 ## Requisitos
-
-Instalar:
 
 - .NET SDK 8.0 o superior.
 - Git.
 - Visual Studio 2022 o Visual Studio Code.
 
-Comprobar la instalación de .NET:
+Comprobar la instalación:
 
 ```bash
 dotnet --version
 ```
 
-## Descargar el proyecto
+## Descargar y ejecutar
 
 ```bash
 git clone https://github.com/apitx/KillingMachine.git
 cd KillingMachine
-```
-
-## Restaurar dependencias
-
-```bash
 dotnet restore
-```
-
-## Instalar Entity Framework Core CLI
-
-Ejecutar este comando solamente si `dotnet ef` no está instalado:
-
-```bash
 dotnet tool install --global dotnet-ef
-```
-
-Comprobar la instalación:
-
-```bash
-dotnet ef --version
-```
-
-## Crear o actualizar la base de datos
-
-```bash
 dotnet ef database update
-```
-
-La aplicación utiliza SQLite y creará la base de datos local automáticamente.
-
-## Compilar el proyecto
-
-```bash
-dotnet build
-```
-
-## Ejecutar la aplicación
-
-```bash
 dotnet run
 ```
 
-Abrir en el navegador la dirección mostrada en la terminal. Normalmente:
+Abrir la dirección indicada en la terminal. Normalmente:
 
 ```text
 http://localhost:5080
@@ -75,25 +36,24 @@ http://localhost:5080
 dotnet watch run
 ```
 
-## Detener la aplicación
-
-Presionar:
+## Detener
 
 ```text
 Ctrl + C
 ```
 
-## Limpiar y volver a compilar
+## Limpiar y volver a ejecutar
+
+### Git Bash
 
 ```bash
-dotnet clean
 rm -rf bin obj
 dotnet restore
 dotnet build
 dotnet run
 ```
 
-En Windows PowerShell, para eliminar `bin` y `obj`:
+### PowerShell
 
 ```powershell
 Remove-Item -Recurse -Force bin, obj -ErrorAction SilentlyContinue
@@ -102,24 +62,15 @@ dotnet build
 dotnet run
 ```
 
-## Error por archivo bloqueado
-
-Si aparece un error indicando que `KillingMachine.exe` está siendo utilizado por otro proceso, detener la aplicación desde Visual Studio Code con:
-
-```text
-Shift + F5
-```
-
-O ejecutar en PowerShell:
-
-```powershell
-Get-Process KillingMachine,dotnet -ErrorAction SilentlyContinue | Stop-Process -Force
-```
-
-Después:
+## Publicar
 
 ```bash
-dotnet clean
-dotnet build
-dotnet run
+rm -rf publish
+dotnet publish KillingMachine.csproj -c Release -o publish
+```
+
+Enlace público:
+
+```text
+https://killingmachine.runasp.net/
 ```

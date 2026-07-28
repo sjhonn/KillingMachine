@@ -1,0 +1,35 @@
+@model IEnumerable<GalleryItem>
+@{ ViewData["Title"] = "Galeria"; }
+<section class="page-header"><div class="container"><span class="eyebrow">GALERÍA</span><h1>Galería</h1><p>Administra las imágenes y mensajes que se muestran al público.</p></div></section>
+<section class="crud-shell">
+    <div class="container">
+        <div class="crud-toolbar"><h2>Contenido de la galería</h2><a class="btn btn-primary" asp-action="Create">Nuevo imagen</a></div>
+        @if (!Model.Any())
+        {
+            <div class="empty-state">No hay imágenes registrados.</div>
+        }
+        else
+        {
+            <div class="table-wrap"><table class="data-table"><thead><tr>
+                    <th>@Html.DisplayNameFor(model => model.Title)</th>
+                    <th>@Html.DisplayNameFor(model => model.ImageUrl)</th>
+                    <th>@Html.DisplayNameFor(model => model.Description)</th>
+                    <th>@Html.DisplayNameFor(model => model.DisplayOrder)</th>
+                    <th>@Html.DisplayNameFor(model => model.IsActive)</th>
+                    <th>Acciones</th>
+                </tr></thead><tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@item.ImageUrl</td>
+                    <td>@item.Description</td>
+                    <td>@item.DisplayOrder</td>
+                    <td>@(item.IsActive ? "Si" : "No")</td>
+                    <td><div class="actions"><a class="btn btn-small btn-secondary" asp-action="Details" asp-route-id="@item.Id">Ver</a><a class="btn btn-small btn-primary" asp-action="Edit" asp-route-id="@item.Id">Editar</a><a class="btn btn-small btn-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a></div></td>
+                </tr>
+            }
+            </tbody></table></div>
+        }
+    </div>
+</section>

@@ -1,0 +1,22 @@
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "No pudimos completar la solicitud";
+}
+<section class="page-header">
+    <div class="container">
+        <span class="eyebrow">ATENCIÓN</span>
+        <h1>Ocurrió un inconveniente</h1>
+        <p>No pudimos completar la acción en este momento. Vuelve a intentarlo o regresa al inicio.</p>
+    </div>
+</section>
+<section class="section compact">
+    <div class="container narrow">
+        <div class="empty-state">
+            <p>La información no se perdió. Actualiza la página o inténtalo nuevamente en unos minutos.</p>
+            <div class="actions" style="justify-content:center; margin-top:20px">
+                <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Volver al inicio</a>
+                <a class="btn btn-secondary" href="/#contacto">Contactar</a>
+            </div>
+        </div>
+    </div>
+</section>

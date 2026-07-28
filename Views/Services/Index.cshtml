@@ -1,0 +1,35 @@
+@model IEnumerable<Service>
+@{ ViewData["Title"] = "Servicios"; }
+<section class="page-header"><div class="container"><span class="eyebrow">SERVICIOS</span><h1>Servicios</h1><p>Mantén actualizadas las actividades, duraciones y tarifas disponibles.</p></div></section>
+<section class="crud-shell">
+    <div class="container">
+        <div class="crud-toolbar"><h2>Servicios disponibles</h2><a class="btn btn-primary" asp-action="Create">Nuevo servicio</a></div>
+        @if (!Model.Any())
+        {
+            <div class="empty-state">No hay servicios registrados.</div>
+        }
+        else
+        {
+            <div class="table-wrap"><table class="data-table"><thead><tr>
+                    <th>@Html.DisplayNameFor(model => model.Name)</th>
+                    <th>@Html.DisplayNameFor(model => model.Description)</th>
+                    <th>@Html.DisplayNameFor(model => model.Price)</th>
+                    <th>@Html.DisplayNameFor(model => model.DurationMinutes)</th>
+                    <th>@Html.DisplayNameFor(model => model.IsActive)</th>
+                    <th>Acciones</th>
+                </tr></thead><tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>@item.Price.ToString("0.00")</td>
+                    <td>@item.DurationMinutes</td>
+                    <td>@(item.IsActive ? "Si" : "No")</td>
+                    <td><div class="actions"><a class="btn btn-small btn-secondary" asp-action="Details" asp-route-id="@item.Id">Ver</a><a class="btn btn-small btn-primary" asp-action="Edit" asp-route-id="@item.Id">Editar</a><a class="btn btn-small btn-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a></div></td>
+                </tr>
+            }
+            </tbody></table></div>
+        }
+    </div>
+</section>

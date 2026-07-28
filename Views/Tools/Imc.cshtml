@@ -1,0 +1,55 @@
+@{
+    ViewData["Title"] = "Herramientas de bienestar";
+}
+<section class="page-header">
+    <div class="container">
+        <span class="eyebrow">BIENESTAR</span>
+        <h1>Conoce mejor tu punto de partida</h1>
+        <p>Realiza cálculos orientativos sobre tu índice de masa corporal, hidratación y frecuencia de entrenamiento.</p>
+    </div>
+</section>
+<section class="section compact">
+    <div class="container">
+        <div class="wellness-grid">
+            <article class="wellness-card">
+                <span class="eyebrow">ÍNDICE CORPORAL</span>
+                <h2>Calculadora de IMC</h2>
+                <form class="panel-form flat" id="imcForm">
+                    <div class="form-grid two">
+                        <div class="form-group"><label for="weight">Peso (kg)</label><input id="weight" type="number" min="20" max="500" step="0.1" required /></div>
+                        <div class="form-group"><label for="height">Altura (cm)</label><input id="height" type="number" min="80" max="250" step="0.1" required /></div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Calcular IMC</button>
+                </form>
+                <div class="tool-result" id="imcResult" aria-live="polite">Ingresa tus datos para calcular.</div>
+            </article>
+
+            <article class="wellness-card">
+                <span class="eyebrow">HIDRATACIÓN</span>
+                <h2>Consumo diario de agua</h2>
+                <form class="panel-form flat" id="waterForm">
+                    <div class="form-grid two">
+                        <div class="form-group"><label for="waterWeight">Peso (kg)</label><input id="waterWeight" type="number" min="20" max="500" step="0.1" required /></div>
+                        <div class="form-group"><label for="activityLevel">Nivel de actividad</label><select id="activityLevel" required><option value="normal">Moderada</option><option value="high">Alta</option></select></div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Calcular hidratación</button>
+                </form>
+                <div class="tool-result" id="waterResult" aria-live="polite">Completa tus datos para obtener una referencia.</div>
+            </article>
+
+            <article class="wellness-card full-card">
+                <span class="eyebrow">PLANIFICACIÓN</span>
+                <h2>Frecuencia semanal sugerida</h2>
+                <form class="panel-form flat" id="frequencyForm">
+                    <div class="form-grid two">
+                        <div class="form-group"><label for="experienceLevel">Experiencia</label><select id="experienceLevel" required><option value="beginner">Estoy comenzando</option><option value="intermediate">Ya entreno con regularidad</option><option value="advanced">Tengo experiencia avanzada</option></select></div>
+                        <div class="form-group"><label for="frequencyGoal">Objetivo</label><select id="frequencyGoal" required><option value="health">Salud general</option><option value="strength">Fuerza</option><option value="conditioning">Resistencia</option></select></div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Ver sugerencia</button>
+                </form>
+                <div class="tool-result" id="frequencyResult" aria-live="polite">Selecciona tus datos para recibir una sugerencia inicial.</div>
+            </article>
+        </div>
+        <p class="legal-note wellness-note">Los resultados son orientativos y no reemplazan una evaluación médica, nutricional o profesional personalizada.</p>
+    </div>
+</section>

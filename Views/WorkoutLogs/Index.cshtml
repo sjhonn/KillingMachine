@@ -1,0 +1,10 @@
+@model IEnumerable<WorkoutLog>
+@{ ViewData["Title"] = "Entrenamientos"; }
+<section class="page-header"><div class="container"><span class="eyebrow">SEGUIMIENTO</span><h1>Entrenamientos realizados</h1><p>Registra sesiones, ejercicios, cargas, repeticiones y duración.</p></div></section>
+<section class="crud-shell"><div class="container">
+<div class="crud-toolbar"><h2>Registros</h2><a class="btn btn-primary" asp-action="Create">Nuevo entrenamiento</a></div>
+@if (!Model.Any()) { <div class="empty-state">No existen entrenamientos.</div> } else {
+<div class="table-wrap"><table class="data-table"><thead><tr><th>Cliente</th><th>Ejercicio</th><th>Fecha</th><th>Series</th><th>Repeticiones</th><th>Peso</th><th>Duracion</th><th>Acciones</th></tr></thead><tbody>
+@foreach (var item in Model) { <tr><td>@item.Client?.FullName</td><td>@item.Exercise?.Name</td><td>@item.WorkoutDate.ToString("dd/MM/yyyy")</td><td>@item.Sets</td><td>@item.Repetitions</td><td>@item.WeightKg.ToString("0.0") kg</td><td>@item.DurationMinutes min</td><td><div class="actions"><a class="btn btn-small btn-secondary" asp-action="Details" asp-route-id="@item.Id">Ver</a><a class="btn btn-small btn-primary" asp-action="Edit" asp-route-id="@item.Id">Editar</a><a class="btn btn-small btn-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a></div></td></tr> }
+</tbody></table></div> }
+</div></section>

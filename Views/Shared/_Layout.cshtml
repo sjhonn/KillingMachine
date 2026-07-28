@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Killing Machine, gimnasio para fuerza, bienestar, entrenamiento y seguimiento de progreso." />
+    <meta name="theme-color" content="#080808" />
+    <title>@ViewData["Title"] - Killing Machine</title>
+    <link rel="icon" type="image/png" href="~/images/killing-machine-logo.png" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+<a class="skip-link" href="#contenido-principal">Ir al contenido principal</a>
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="brand" asp-controller="Home" asp-action="Index" aria-label="Ir al inicio de Killing Machine">
+            <img src="~/images/killing-machine-logo.png" alt="Logo Killing Machine" />
+            <span>KILLING MACHINE</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" data-menu-toggle>MENÚ</button>
+        <nav class="main-nav" data-main-nav aria-label="Navegación principal">
+            <a asp-controller="Home" asp-action="Index">Inicio</a>
+            <a href="/#servicios">Servicios</a>
+            <a href="/#planes">Membresías</a>
+            <a href="/#horarios">Horarios</a>
+            <a href="/#entrenadores">Entrenadores</a>
+            <a asp-controller="Dashboard" asp-action="Index">Progreso</a>
+            <a asp-controller="Tools" asp-action="Imc">Bienestar</a>
+            <details class="nav-dropdown">
+                <summary>Gestión</summary>
+                <div class="dropdown-panel">
+                    <a asp-controller="Clients" asp-action="Index">Clientes</a>
+                    <a asp-controller="ClientMemberships" asp-action="Index">Membresías</a>
+                    <a asp-controller="Trainers" asp-action="Index">Entrenadores</a>
+                    <a asp-controller="Services" asp-action="Index">Servicios</a>
+                    <a asp-controller="MembershipPlans" asp-action="Index">Planes comerciales</a>
+                    <a asp-controller="Exercises" asp-action="Index">Ejercicios</a>
+                    <a asp-controller="WorkoutPlans" asp-action="Index">Planes de entrenamiento</a>
+                    <a asp-controller="WorkoutLogs" asp-action="Index">Entrenamientos</a>
+                    <a asp-controller="BodyMeasurements" asp-action="Index">Peso y medidas</a>
+                    <a asp-controller="WeeklySchedules" asp-action="Index">Calendario semanal</a>
+                    <a asp-controller="GalleryItems" asp-action="Index">Galería</a>
+                    <a asp-controller="ContactMessages" asp-action="Index">Mensajes</a>
+                    <a asp-controller="TrialRequests" asp-action="Index">Clases de prueba</a>
+                </div>
+            </details>
+            <a class="nav-contact" href="/#contacto">Contacto</a>
+        </nav>
+    </div>
+</header>
+
+<main id="contenido-principal">
+    @if (TempData["Success"] is string success)
+    {
+        <div class="container flash flash-success" role="status">@success</div>
+    }
+    @if (TempData["Error"] is string error)
+    {
+        <div class="container flash flash-error" role="alert">@error</div>
+    }
+    @RenderBody()
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div>
+            <strong>KILLING MACHINE</strong>
+            <p>Entrenamiento para todos los niveles, con orientación, horarios amplios y seguimiento constante.</p>
+        </div>
+        <div>
+            <strong>Horario</strong>
+            <p>Lunes a viernes: 06:00 a 22:00<br />Sábados: 07:00 a 18:00</p>
+        </div>
+        <div>
+            <strong>Contacto</strong>
+            <p>Teléfono: +51 999 999 999<br />Correo: contacto@killingmachine.pe</p>
+        </div>
+        <div>
+            <strong>Enlaces</strong>
+            <p><a href="/#planes">Membresías</a><br /><a href="/#clase-prueba">Clase de prueba</a><br /><a asp-controller="Home" asp-action="Privacy">Privacidad</a></p>
+        </div>
+    </div>
+    <div class="container footer-bottom">&copy; @DateTime.Now.Year Killing Machine. Todos los derechos reservados.</div>
+</footer>
+
+<a class="whatsapp-button" href="https://wa.me/51914491874?text=Hola%2C%20Jhonn%20Pether.%20Estoy%20interesado%20en%20crear%20una%20p%C3%A1gina%20web.%20%C2%BFPodr%C3%ADas%20brindarme%20informaci%C3%B3n%20y%20precios%3F" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">WhatsApp</a>
+<button class="back-to-top" type="button" data-back-to-top aria-label="Volver al inicio">↑</button>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+@* DESARROLLADOR: Jhonn-Phether *@
